@@ -31,13 +31,34 @@ class App extends Component {
     };
   }
 
+  handleRemoveTodo(index) {
+    console.log('handleRemoveTodo', index);
+    this.state.todos.splice(index, 1);
+    this.setState({
+      todos
+    });
+  }
+
   render() {
     return (
 
       <div className="container">
         <h4> ToDo Count: <span className="badge">{this.state.todos.length}</span></h4>
-      </div>
+        <ul className="list-group">
+          {this.state.todos.map((todo, index) =>
+            <li className="list-group-item" key={index}>
+              <h4>
+                {todo.todoTitle} <small><span className="label label-info">{todo.todoPriority}</span></small>
+              </h4>
+              <p><span className="glyphicon glyphicon-user"></span>&nbsp;{todo.todoResponsible}</p>
 
+              <p>{todo.todoDescription}</p>
+
+              <button className="btn btn-danger btn-sm" onClick={this.handleRemoveTodo.bind(this, index)}><span className="glyphicon glyphicon-trash"></span></button>
+            </li>
+          )}
+        </ul>      
+      </div> 
       /* <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -45,8 +66,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div> */
+        </p>*/
     );
   }
 }
