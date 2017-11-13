@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import TodoInput from './TodoInput';
 
 let todos = [
   {
@@ -43,6 +44,11 @@ class App extends Component {
     return (
 
       <div className="container">
+
+        <TodoInput></TodoInput>
+
+        <hr/>
+
         <h4> ToDo Count: <span className="badge">{this.state.todos.length}</span></h4>
         <ul className="list-group">
           {this.state.todos.map((todo, index) =>
